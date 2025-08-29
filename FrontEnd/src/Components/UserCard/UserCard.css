@@ -1,53 +1,85 @@
-.user-card{
-    width:80%;
-    margin: auto;
-    height:70px;
-    overflow: none;
+.user-card {
+  width: 80%;
+  margin: auto;
+  height: 70px;
+  overflow: none;
 }
-.user-list-user-avatar{
-    width:55px;
-    left:10px;
-    position: absolute;
+.user-list-user-avatar {
+  width: 55px;
+  left: 10px;
+  position: absolute;
 }
-.user-card-sub-container{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.user-card-sub-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-.user-card{
-    width:350px;
-    height:70px;
-    margin: 0.5em auto;
-    display: flex;
-    justify-content: center;
+.user-card {
+  width: 350px;
+  height: 70px;
+  margin: 0.5em auto;
+  display: flex;
+  justify-content: center;
 }
-.user-sub-card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.user-sub-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.remove-user-button{
-    cursor: pointer;
-    user-select: none;
-    right: 5px;
-    top:5px;
-    margin: 7px 10px 0 0;
-    position: absolute;
-    border:none;
-    background-color: transparent;
+
+/* Clickable card styling */
+.clickable-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.user-name{
-    color:rgb(71, 71, 71);
-    font-weight: 600;
+
+.clickable-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-.user-details{
-    display: flex;
+
+.remove-user-button {
+  cursor: pointer;
+  user-select: none;
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  z-index: 10;
 }
-.user-details h6, .user-details-container {
-    text-align: center;
+.user-name {
+  color: rgb(71, 71, 71);
+  font-weight: 600;
 }
-.progress-button{
-    position:absolute;
-    right:10px;
-    bottom:10px;
+.user-details {
+  display: flex;
+}
+.user-details h6,
+.user-details-container {
+  text-align: center;
+}
+
+/* Simple Progress Button - Only for assign/unassign now */
+.progress-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  z-index: 10;
+}
+
+.progress-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
 }

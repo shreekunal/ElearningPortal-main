@@ -349,16 +349,19 @@
 /* Button Container */
 .buttons-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0px 50px;
 }
 
 .add-material {
   top: 20px;
+  margin-bottom: 30px;
 }
 
 .add-material-button-container {
-  width: 90%;
+  width: auto;
+  display: flex;
+  justify-content: center;
 }
 
 /* Legacy button styles for compatibility */

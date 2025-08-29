@@ -13,14 +13,14 @@
 }
 
 .card-shadow {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .course-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Header Section */
@@ -202,7 +202,7 @@
 
 /* Enhanced button effect */
 .enhanced::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -219,6 +219,52 @@
 
 .enhanced:hover::before {
   left: 100%;
+}
+
+/* Admin Actions */
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.admin-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+}
+
+.edit-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.admin-btn:active {
+  transform: scale(0.95);
 }
 
 /* Progress Section */
@@ -249,7 +295,7 @@
 }
 
 .progress-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -291,28 +337,28 @@
     max-width: 100%;
     margin-bottom: 16px;
   }
-  
+
   .course-card-header-img {
     height: 180px;
   }
-  
+
   .course-card .card-body {
     padding: 20px;
     gap: 14px;
   }
-  
+
   .course-title {
     font-size: 16px;
   }
-  
+
   .course-stats {
     gap: 8px;
   }
-  
+
   .stat-item span {
     font-size: 11px;
   }
-  
+
   .stat-icon {
     width: 14px;
     height: 14px;
@@ -324,15 +370,15 @@
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .stat-item {
     justify-content: center;
   }
-  
+
   .course-card-header-img {
     height: 160px;
   }
-  
+
   .course-card .card-body {
     padding: 16px;
   }
@@ -344,19 +390,19 @@
     background: #1a202c;
     border: 1px solid #2d3748;
   }
-  
+
   .course-title {
     color: #f7fafc;
   }
-  
+
   .stat-item span {
     color: #a0aec0;
   }
-  
+
   .progress-text {
     color: #a0aec0;
   }
-  
+
   .progress-bar {
     background-color: #2d3748;
   }
@@ -376,7 +422,7 @@
 }
 
 .course-card.loading .course-card-header-img::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

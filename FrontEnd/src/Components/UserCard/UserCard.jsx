@@ -77,12 +77,15 @@ const UserCard = ({
   };
 
   const RemoveUser = async () => {
+    const userToDelete = isStudent ? student : instructor;
+    const userType = isStudent ? "student" : "instructor";
+
     const isConfirmed = await confirmationToast(
-      "Are You Sure You Want to remove instructor?"
+      `Are You Sure You Want to remove this ${userType}?`
     );
     if (isConfirmed) {
       const response = await fetch(
-        `${Front_ENV.Back_Origin}/deleteUser/${instructor.id}`,
+        `${Front_ENV.Back_Origin}/deleteUser/${userToDelete.id}`,
         {
           method: "DELETE",
           headers: {
@@ -152,13 +155,43 @@ const UserCard = ({
   };
 
   const ViewProgress = () => {
-    navigate(`/ViewProgress/${student.id}/${student.name}`, {
-      state: { courseID: id },
+    // If there's a course ID from route params, pass it in state for filtering
+    // If no course ID (like in admin student management), show all progress
+    const navigationState = id ? { courseID: id } : {};
+
+    // Encode the student name to handle spaces and special characters
+    const encodedName = encodeURIComponent(student.name);
+
+    navigate(`/ViewProgress/${student.id}/${encodedName}`, {
+      state: navigationState,
     });
   };
 
+  const handleCardClick = (e) => {
+    // Don't navigate if clicking on delete button or assign/unassign buttons
+    if (
+      e.target.closest(".remove-user-button") ||
+      e.target.closest(".assign-button")
+    ) {
+      return;
+    }
+
+    console.log("Card clicked for student:", student);
+    console.log("Current route params id:", id);
+
+    // Only navigate to progress for students
+    if (isStudent) {
+      console.log("Navigating to ViewProgress...");
+      ViewProgress();
+    }
+  };
   return (
-    <div className=" card user-card card-shadow ">
+    <div
+      className={`card user-card card-shadow ${
+        isStudent ? "clickable-card" : ""
+      }`}
+      onClick={isStudent ? handleCardClick : undefined}
+    >
       <div className=" user-sub-card">
         <img
           src={
@@ -181,55 +214,43 @@ const UserCard = ({
           <FontAwesomeIcon
             className="remove-user-button"
             icon={faTrash}
-            onClick={
-              !isAdmin
-                ? isStudent
-                  ? RemoveStudent
-                  : RemoveInstructor
-                : () => RemoveUser(instructor.id)
-            }
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isAdmin) {
+                // Admin user management - permanently delete user
+                RemoveUser();
+              } else {
+                // Course-specific removal - unenroll from course
+                if (isStudent) {
+                  RemoveStudent();
+                } else {
+                  RemoveInstructor();
+                }
+              }
+            }}
             color="red"
           />
-        )}
-        {currentUser.role === "Student" &&
-          isStudent &&
-          currentUser.id === student.id && (
-            <button
-              className=" enroll-text enroll-button bold-text blue-text progress-button"
-              onClick={ViewProgress}
-            >
-              My Progress
-            </button>
-          )}
-        {currentUser.role === "Instructor" && isStudent && (
-          <button
-            className=" enroll-text enroll-button bold-text blue-text progress-button"
-            onClick={ViewProgress}
-          >
-            Progress
-          </button>
-        )}
-        {currentUser.role === "Admin" && !isAdmin && isStudent && (
-          <button
-            className=" enroll-text enroll-button bold-text blue-text progress-button"
-            onClick={ViewProgress}
-          >
-            Progress
-          </button>
         )}
         {assignInstructor &&
           isAssigned !== undefined &&
           (!isAssigned ? (
             <button
-              className=" enroll-text enroll-button bold-text blue-text progress-button"
-              onClick={AssignInstructor}
+              className="assign-button progress-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                AssignInstructor();
+              }}
             >
               Assign
             </button>
           ) : (
             <button
-              className=" enroll-text enroll-button bold-text blue-text progress-button"
-              onClick={UnAssignInstructor}
+              className="assign-button progress-button"
+              style={{ background: "#dc2626" }}
+              onClick={(e) => {
+                e.stopPropagation();
+                UnAssignInstructor();
+              }}
             >
               Unassign
             </button>

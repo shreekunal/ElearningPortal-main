@@ -1,0 +1,227 @@
+/* Modern Students Page Styles */
+.students-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.students-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.students-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.students-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.students-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.students-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.student-action-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.student-action-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.student-action-card:hover::before {
+  left: 100%;
+}
+
+.student-action-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.current-students-card .card-icon-container {
+  background: #4facfe;
+}
+
+.new-student-card .card-icon-container {
+  background: #00f2fe;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.card-description {
+  color: #666;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.card-action-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.current-students-card .card-action-button {
+  background: #4facfe;
+  color: white;
+}
+
+.new-student-card .card-action-button {
+  background: #00f2fe;
+  color: white;
+}
+
+.card-action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.floating-action-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.floating-action-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.floating-action-button svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .students-page-container {
+    padding: 1rem;
+  }
+
+  .students-header h1 {
+    font-size: 2rem;
+  }
+
+  .students-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .student-action-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .students-header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.students-page-container > * {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.students-page-container > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.students-page-container > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.students-page-container > *:nth-child(4) {
+  animation-delay: 0.3s;
+}

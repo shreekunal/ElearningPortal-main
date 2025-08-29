@@ -22,6 +22,7 @@ const pages = [
     role: ["student", "instructor"],
   }, // This page is protected (must be
   { auth: true, name: "Instructors ", to: "/InstructorsPage", role: ["admin"] },
+  { auth: true, name: "Students ", to: "/StudentsPage", role: ["admin"] },
   // logged in)
   { auth: true, name: "Progress", to: `/ViewProgress`, role: ["student"] }, // This page is protected (must be
   // logged in)
@@ -36,6 +37,7 @@ const burgerListPages = [
     role: ["student", "instructor"],
   },
   { auth: true, name: "Instructors ", to: "/InstructorsPage", role: ["admin"] },
+  { auth: true, name: "Students ", to: "/StudentsPage", role: ["admin"] },
   { auth: true, name: "Progress", to: `/ViewProgress`, role: ["student"] }, // This page is protected (must be
   { auth: false, name: "Login", to: "/login" },
   { auth: false, name: "Register", to: "/SignUp" },
@@ -60,6 +62,11 @@ const Header = ({ setFilter, showSearch = false }) => {
     "/ViewProgress",
     "/AssignmentPage",
     "/ExamPage",
+    "/CurrentInstructors",
+    "/CurrentStudents",
+    "/AssignInstructor",
+    "/AddInstructor",
+    "/AddStudent",
   ];
 
   const shouldShowBackButton = routesWithBackButton.some((path) =>
@@ -67,7 +74,23 @@ const Header = ({ setFilter, showSearch = false }) => {
   );
 
   const handleBackClick = () => {
-    navigate(-1); // Go back to previous page
+    // Custom navigation logic for specific routes
+    if (route.includes("/CurrentInstructors")) {
+      navigate("/InstructorsPage");
+    } else if (route.includes("/CurrentStudents")) {
+      navigate("/StudentsPage");
+    } else if (route.includes("/AssignInstructor")) {
+      // Extract course ID from the path and navigate back to course details
+      const pathParts = route.split("/");
+      const courseId = pathParts[pathParts.length - 1];
+      navigate(`/CourseDetails/${courseId}`);
+    } else if (route.includes("/AddInstructor")) {
+      navigate("/InstructorsPage");
+    } else if (route.includes("/AddStudent")) {
+      navigate("/StudentsPage");
+    } else {
+      navigate(-1); // Default back navigation for other routes
+    }
   };
 
   const profileOptions = isAuthenticated

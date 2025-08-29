@@ -16,7 +16,7 @@ const CoursesCards = ({ courses, mode, globalFilter }) => {
   const [coursesList, setCoursesList] = useState([]);
   const CardsContainer = useRef(null);
   const [courseEdit, setCourseEdit] = useState({});
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, fetchCourses } = useContext(CurrentUserContext);
 
   const filterHandler = (filter) => {
     const filteredCourses = courses.filter((course) =>
@@ -82,6 +82,7 @@ const CoursesCards = ({ courses, mode, globalFilter }) => {
               setCourseEdit={setCourseEdit}
               showEditFormHandler={showEditFormHandler}
               showFormHandler={showFormHandler}
+              refreshCourses={fetchCourses}
               key={v4()}
               {...course}
               mode={mode}

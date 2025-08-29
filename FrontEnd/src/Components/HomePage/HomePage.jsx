@@ -6,7 +6,8 @@ import { NavLink } from "react-router-dom";
 import CoursePlaceHolder from "../../assets/Course_Placeholder.svg";
 
 const HomePage = () => {
-  const { courses, isAuthenticated } = useContext(CurrentUserContext);
+  const { courses, isAuthenticated, currentUser } =
+    useContext(CurrentUserContext);
 
   const features = [
     {
@@ -81,9 +82,11 @@ const HomePage = () => {
                 <div className="course-icon">💻</div>
                 <h4>Web Development</h4>
                 <p>Master modern web technologies</p>
-                <div className="progress-bar">
-                  <div className="progress-fill"></div>
-                </div>
+                {currentUser && currentUser.role === "Student" && (
+                  <div className="progress-bar">
+                    <div className="progress-fill"></div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="floating-card card-2">
@@ -91,9 +94,11 @@ const HomePage = () => {
                 <div className="course-icon">📊</div>
                 <h4>Data Science</h4>
                 <p>Analytics & Machine Learning</p>
-                <div className="progress-bar">
-                  <div className="progress-fill fill-80"></div>
-                </div>
+                {currentUser && currentUser.role === "Student" && (
+                  <div className="progress-bar">
+                    <div className="progress-fill fill-80"></div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="floating-card card-3">
@@ -101,9 +106,11 @@ const HomePage = () => {
                 <div className="course-icon">🎨</div>
                 <h4>UI/UX Design</h4>
                 <p>Create beautiful user experiences</p>
-                <div className="progress-bar">
-                  <div className="progress-fill fill-60"></div>
-                </div>
+                {currentUser && currentUser.role === "Student" && (
+                  <div className="progress-bar">
+                    <div className="progress-fill fill-60"></div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

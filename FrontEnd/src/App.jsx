@@ -5,6 +5,7 @@ import ForgotPassword from "./Components/Forgotpassword/Forgotpassword.jsx";
 import SignUp from "./Components/Signup/Signup.jsx";
 import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import StudentList from "./Components/StudentsList/StudentList.jsx";
+import AdminStudentsList from "./Components/AdminStudentsList/AdminStudentsList.jsx";
 import InstructorsList from "./Components/InstructorsList/InstructorsList.jsx";
 import AddAnnouncement from "./Components/AddAnnouncement/AddAnnouncement.jsx";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
@@ -27,7 +28,9 @@ import StudentProgress from "./Components/StudentProgress/StudentProgress.jsx";
 import Front_ENV from "../Front_ENV.jsx";
 import AddMaterial from "./Components/AddMaterial/AddMaterial.jsx";
 import AddInstructor from "./Components/AddInstructor/AddInstructor.jsx";
+import AddStudent from "./Components/AddStudent/AddStudent.jsx";
 import InstructorsPage from "./Components/AdminInstructorsPage/AdminInstructorsPage.jsx";
+import AdminStudentsPage from "./Components/AdminStudentsPage/AdminStudentsPage.jsx";
 import CourseBlog from "./Components/CourseBlog/CourseBlog.jsx";
 import PdfViewer from "./Components/PDFViewer/PDFViewer.jsx";
 import "./App.css";
@@ -72,7 +75,7 @@ const pathsRoleBased = [
     roles: "instructor, student",
   },
   {
-    path: /^\/ViewProgress\/[a-zA-Z0-9\-]+$/,
+    path: /^\/ViewProgress\/[a-zA-Z0-9\-]+\/.+$/,
     roles: "student, instructor, admin",
   },
   {
@@ -80,7 +83,19 @@ const pathsRoleBased = [
     roles: "admin",
   },
   {
+    path: /^\/AddStudent$/,
+    roles: "admin",
+  },
+  {
     path: /^\/InstructorsPage$/,
+    roles: "admin",
+  },
+  {
+    path: /^\/StudentsPage$/,
+    roles: "admin",
+  },
+  {
+    path: /^\/CurrentStudents$/,
     roles: "admin",
   },
   {
@@ -394,7 +409,10 @@ function App() {
               />{" "}
               <Route path="/ViewProgress" element={<StudentProgress />} />
               <Route path="/AddInstructor" element={<AddInstructor />} />
+              <Route path="/AddStudent" element={<AddStudent />} />
               <Route path="/InstructorsPage" element={<InstructorsPage />} />
+              <Route path="/StudentsPage" element={<AdminStudentsPage />} />
+              <Route path="/CurrentStudents" element={<AdminStudentsList />} />
               <Route
                 path="*"
                 element={
