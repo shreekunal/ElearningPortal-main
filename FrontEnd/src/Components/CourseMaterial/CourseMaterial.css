@@ -1,0 +1,50 @@
+.material-card {
+    min-height: 100px;
+    transition: all 0.3s ease-in-out;
+    height: fit-content;
+    justify-content: flex-start;
+    position: relative;
+    width:100%;
+    display: flex;
+}
+.material-sub-card {
+    gap: 1.5rem;
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: left;
+}
+.material-icon{
+    width: 50px;
+    height: 80%;
+}
+.material-button {
+    cursor: pointer;
+    user-select: none;
+    right: 0;
+    bottom:0;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    position: absolute;
+    border:none;
+    background-color: transparent;
+}
+
+
+.material-button:hover {
+    text-decoration: underline !important;
+}
+.material-date{
+    color:rgb(71, 71, 71);
+    font-weight: 600;
+}
+.material-due{
+    right: 0;
+    top:0;
+    margin-right: 10px;
+    position: absolute;
+}
+.material-title-due{
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,75 @@
+.card-text:last-child {
+    margin-bottom: 0;
+    margin-left: 50px;
+}
+
+.ProfileEditButton {
+    border: 2px solid #fb8928;
+    background: white;
+    color: #fb8928;
+    transition: all 0.15s ease;
+}
+
+.ProfileEditButton:hover {
+    background: #fb8928;
+    color: white;
+}
+
+.ProfileEditButton:active {
+    scale: 0.95;
+    background: #fb8928 !important;
+    color: white !important;
+}
+
+.ProfileSaveButton {
+    border: 2px solid #0d6efd;
+    background: white;
+    color: #0d6efd;
+    transition: all 0.15s ease;
+}
+
+.ProfileSaveButton:hover {
+    background: #0d6efd;
+    color: white;
+}
+
+.ProfileSaveButton:active {
+    scale: 0.95;
+    background: #0d6efd !important;
+    color: white !important;
+}
+
+.Profile-Text-View {
+    user-select: none;
+    background: #80808040;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.profile-row {
+    min-height: 435px;
+}
+
+.profile-left-labels {
+    margin-left: 2rem;
+}
+
+@media (max-width: 992px) {
+    .profile-row {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        max-width: fit-content;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-left-labels {
+        margin-left: 0;
+    }
+}

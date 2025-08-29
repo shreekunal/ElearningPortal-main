@@ -1,0 +1,71 @@
+.ButtonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  align-items: center;
+}
+
+.AddButton {
+  position: absolute;
+  color: black;
+  background: #d8d7d1;
+  border: solid #d8d7d1;
+  border-radius: 20px;
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.AddButton:hover {
+  background: #fb8928;
+  border: solid #fb8928;
+  color: white;
+}
+
+.courses-cards {
+  min-height: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1rem 6rem 3rem;
+}
+
+.courses-buttons-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 850px) {
+  .AddButton {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+  .courses-buttons-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .courses-cards {
+    padding: 1rem 3rem 3rem;
+  }
+  .search-input-div {
+    width: 220px !important;
+  }
+}

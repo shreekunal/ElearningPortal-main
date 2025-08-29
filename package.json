@@ -1,0 +1,23 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run start-server",
+    "start-server": "cd BackEnd && npm install && npm run dev",
+    "start-client": "cd FrontEnd && npm install && npm run dev",
+    "build": "npm run build-client",
+    "build-client": "cd FrontEnd && npm install && npm run build",
+    "dev": "concurrently \"npm run start-server\" \"npm run start-client\""
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  },
+  "description": "Shiksha Samarth - A comprehensive eLearning platform that enables users to enroll in courses, submit assignments, and take exams. The platform supports three types of users: Students, Instructors, and Admins. Each role has distinct functionalities, ensuring the system is secure and efficient in managing courses and student progress.",
+  "main": "env.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

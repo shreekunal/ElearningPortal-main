@@ -1,0 +1,16 @@
+.icon-button {
+  padding: 10px 20px;
+  background-color: #1d96a7;
+  user-select: none;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+  background-color: #202e61;
+}

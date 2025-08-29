@@ -1,0 +1,55 @@
+.login-container {
+    width: 700px;
+    margin: 80px auto;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    h4 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .MuiTextField-root,
+    .MuiFormControl-root {
+        margin-bottom: 16px;
+    }
+
+    .MuiButton-root {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .blue-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .MuiTextField-root,
+    .MuiFormControl-root {
+        margin-bottom: 12px;
+    }
+
+    .MuiButton-root {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .blue-text {
+        font-size: 12px;
+    }
+}

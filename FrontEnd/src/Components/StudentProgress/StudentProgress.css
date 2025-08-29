@@ -1,0 +1,98 @@
+.student-progress-table{
+    min-width: unset; 
+    width: 100%; 
+    border-collapse: collapse;
+    table-layout: auto;
+    
+}
+
+.student-progress-table-container {
+    overflow-x: auto;
+    margin: 30px 70px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.student-progress-table td {
+    vertical-align: middle;
+}
+
+.student-progress-table tr:hover:not(:has(th:first-child)) {
+    background-color: yellow;
+}
+
+.student-progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 1.5rem;
+}
+
+.stud-prog-hover-cell span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #2D3480;
+    user-select: none;
+}
+
+.on-time {
+    background: #b4b4b4;
+    padding: 2px 5px;
+    border-radius: 10px; 
+    width:80px;
+    margin: 5px 4px;
+    text-align: center;
+}
+
+.late {
+    text-align: center;
+    background: #b4b4b4;
+    padding: 2px 5px;
+    border-radius: 10px; 
+    width:80px;
+    color:red;
+    margin: 5px 4px;
+}
+.view-pdf-button{
+font-weight: 600;
+font-size: 16px;
+color:blue;
+border: none;
+}
+.view-pdf-button:hover{
+    background-color: transparent;
+}
+@media (max-width: 768px) {
+    .student-progress-table-container {
+        padding: 10px;
+        margin: 20px;
+        border-radius: 10px;
+        border: 1px solid;
+    }
+
+    .student-progress-table {
+        font-size: 0.9rem; 
+    }
+
+    .goBackBtn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .student-progress-table {
+        font-size: 0.8rem;
+    }
+
+    .goBackBtn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .student-progress-table td, .student-progress-table th {
+        padding: 5px;
+    }
+}

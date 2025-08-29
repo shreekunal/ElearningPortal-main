@@ -1,0 +1,30 @@
+div h2,
+.edit-exam-title {
+  background-color: #fb8928;
+  padding: 10px;
+}
+
+.exam-title {
+  width: fit-content;
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.edit-exam-title > button,
+.edit-exam-title > input {
+  width: fit-content;
+  height: fit-content;
+  font-size: 24px;
+  background-color: #fb8928;
+  border: none;
+}
+
+.exam-question {
+  background-color: rgb(196, 205, 217);
+}
+
+.edit-question-info > button {
+  height: 29px;
+  padding: 0px 10px;
+}

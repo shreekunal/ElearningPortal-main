@@ -1,0 +1,24 @@
+.add-material-component{
+    display: flex;
+    font-size: 0.8em;
+    gap:4em;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto !important;
+}
+
+.add-material-card {
+    cursor: pointer;
+    width: 250px;
+    height: 300px;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-material-card:hover {
+    transform: translateY(-30px);
+    box-shadow: 0 10px 20px 2px #00000059;
+}
+
+.add-material-header{
+    height:50px;
+}

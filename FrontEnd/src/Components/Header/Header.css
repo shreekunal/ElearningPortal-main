@@ -1,0 +1,81 @@
+.header {
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.logo {
+  user-select: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fb8928;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2d3480;
+  padding: 20px 40px !important;
+  border-radius: 30px;
+}
+
+.header-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-search-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon-buttons {
+  background-color: #f1f1f1;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-icon-buttons:hover {
+  background-color: #fb8928;
+  box-shadow: 0 0 6px 2px rgb(241 241 241 / 34%);
+}
+.profile-image {
+  border: solid 2px #fff;
+  border-radius: 50%;
+  width: 50px;
+}
+@media (max-width: 850px) {
+  .courses-buttons-container {
+    margin-top: 1rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header-search-container .MuiStack-root {
+    width: 200px !important;
+  }
+}
+
+@media (max-width: 987px) {
+  .header-icon-group {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .navbar {
+    padding: 10px 30px !important;
+  }
+  .logo {
+    font-size: 18px;
+  }
+}

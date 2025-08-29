@@ -1,0 +1,33 @@
+.page-component{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: auto !important;
+    margin: auto;
+}
+.PlaceholderImage{
+    width: 350px;
+}
+.TextContainer{
+    margin: 0.5em;
+}
+.placeholder-button{
+    padding: 5px;
+    text-decoration: none;
+}
+.container{
+    margin-bottom:1em;
+}
+@media (max-width:650px){
+    .PlaceholderDiv{
+        min-height: 72vh;
+    }
+    .PlaceholderImage {
+        width: 250px;
+    }
+    .TextContainer h3 {
+        font-size: 1.2rem !important;
+    }
+}

@@ -1,0 +1,130 @@
+.form-container-addCourse {
+    position: absolute;
+    background: white;
+    top: 65px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 101;
+    width: 400px;
+    padding: 32px 24px;
+    font-size: 14px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); 
+}
+
+.form-container-addCourse .AddCourseButton:active, .form-container-addCourse .CancelButton:active {
+    scale: 0.95;
+}
+
+.AddCourse-Reset-Image-Button:hover {
+    color: red !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+.AddCourse-Image-Button-frame {
+    cursor: text;
+    width: max-content;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: transparent;
+    border: 2px solid #274546;
+}
+
+.form-container-addCourse .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container-addCourse .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.form-container-addCourse .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.form-container-addCourse .form-group input {
+    cursor: text;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: transparent;
+    border: 2px solid #274546;
+}
+
+.form-container-addCourse .form-group textarea {
+    cursor: text;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    resize: none;
+    font-weight: 600;
+    height: 96px;
+    border: 2px solid #274546;
+    background-color: transparent;
+    font-family: inherit;
+}
+
+.form-container-addCourse .form-group input::placeholder {
+    opacity: 0.5;
+}
+
+.form-container-addCourse .form-group input:focus, .form-container-addCourse .form-group textarea:focus {
+    outline: none;
+}
+
+.form-container-addCourse .form-submit-btn {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: flex-start;
+    font-family: inherit;
+    color: #717171;
+    font-weight: 600;
+    width: 40%;
+    background: #313131;
+    border: 1px solid #414141;
+    padding: 12px 16px;
+    font-size: inherit;
+    gap: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.AddCourseButton{
+    margin-bottom: 20px;
+    border: 2px solid #274546 !important;
+    background: #274546 !important;
+    transition: all 0.15s ease;
+    color: white;
+}
+
+.AddCourseButton:active {
+    background: #274546 !important;
+    color: white !important;
+}
+
+.CancelButton {
+    border-width: 2px !important;
+    transition: all 0.15s ease;
+}
