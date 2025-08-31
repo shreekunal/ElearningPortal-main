@@ -386,37 +386,26 @@ const CreateUnit = () => {
     }
   };
 
-  const goBack = () => {
-    navigate(`/AddMaterial/${courseId}`);
-  };
-
   return (
     <div className="create-unit-container">
       <div className="create-unit-header">
-        <button className="back-button" onClick={goBack}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-          Back
-        </button>
         <div className="header-content">
-          <h1 className="page-title">
+          <h1 className="page-title" style={{ color: "#ffffff" }}>
             <FontAwesomeIcon icon={faLayerGroup} className="title-icon" />
             Create Learning Unit
           </h1>
-          <p className="page-subtitle">
-            Design a comprehensive learning unit with chapters and assessment
-          </p>
         </div>
       </div>
 
       <div className="unit-form">
         {/* Unit Basic Info */}
         <div className="form-section unit-info-section">
-          <h2 className="section-title">
-            <FontAwesomeIcon icon={faEdit} />
+          <h2 className="section-title" style={{ color: "#ffffff" }}>
+            <FontAwesomeIcon icon={faEdit} style={{ color: "#ffffff" }} />
             Unit Information
           </h2>
           <div className="form-group">
-            <label htmlFor="unitTitle">Unit Title *</label>
+            <label htmlFor="unitTitle"></label>
             <input
               type="text"
               id="unitTitle"
@@ -430,11 +419,24 @@ const CreateUnit = () => {
         {/* Chapters Section */}
         <div className="form-section chapters-section">
           <div className="section-header">
-            <h2 className="section-title">
-              <FontAwesomeIcon icon={faBook} />
+            <h2 className="section-title" style={{ color: "#ffffff" }}>
+              <FontAwesomeIcon icon={faBook} style={{ color: "#ffffff" }} />
               Chapters ({unit.chapters.length})
             </h2>
-            <button className="add-button" onClick={addChapter}>
+            <button
+              onClick={addChapter}
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#000000",
+                border: "1px solid #ccc",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
               <FontAwesomeIcon icon={faPlus} />
               Add Chapter
             </button>
@@ -646,11 +648,27 @@ const CreateUnit = () => {
         {/* Quiz Section */}
         <div className="form-section quiz-section">
           <div className="section-header">
-            <h2 className="section-title">
-              <FontAwesomeIcon icon={faQuestionCircle} />
+            <h2 className="section-title" style={{ color: "#ffffff" }}>
+              <FontAwesomeIcon
+                icon={faQuestionCircle}
+                style={{ color: "#ffffff" }}
+              />
               Unit Quiz ({unit.quiz.questions.length} questions)
             </h2>
-            <button className="add-button" onClick={addQuestion}>
+            <button
+              onClick={addQuestion}
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#000000",
+                border: "1px solid #ccc",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
               <FontAwesomeIcon icon={faPlus} />
               Add Question
             </button>
@@ -762,7 +780,10 @@ const CreateUnit = () => {
 
         {/* Action Buttons */}
         <div className="form-actions">
-          <button className="cancel-button" onClick={goBack}>
+          <button
+            className="cancel-button"
+            onClick={() => navigate(`/AddMaterial/${courseId}`)}
+          >
             Cancel
           </button>
           <button className="save-button" onClick={handleSaveUnit}>

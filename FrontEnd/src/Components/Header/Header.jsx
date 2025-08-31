@@ -58,6 +58,7 @@ const Header = ({ setFilter, showSearch = false }) => {
     "/CourseBlog",
     "/CourseDetails",
     "/AddMaterial",
+    "/CreateUnit",
     "/ViewProgress",
     "/AssignmentPage",
     "/ExamPage",
@@ -83,6 +84,11 @@ const Header = ({ setFilter, showSearch = false }) => {
       const pathParts = route.split("/");
       const courseId = pathParts[pathParts.length - 1];
       navigate(`/CourseDetails/${courseId}`);
+    } else if (route.includes("/CreateUnit")) {
+      // Extract course ID from the path and navigate back to AddMaterial
+      const pathParts = route.split("/");
+      const courseId = pathParts[pathParts.length - 1];
+      navigate(`/AddMaterial/${courseId}`);
     } else if (route.includes("/AddInstructor")) {
       navigate("/InstructorsPage");
     } else if (route.includes("/AddStudent")) {
