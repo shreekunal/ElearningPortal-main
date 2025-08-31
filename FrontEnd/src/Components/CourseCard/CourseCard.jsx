@@ -94,7 +94,9 @@ const CourseCard = ({
               className="start-learning-button enhanced"
               onClick={CourseDetails}
             >
-              Continue Learning
+              {currentUser.role === "Instructor"
+                ? "MY COURSE"
+                : "Continue Learning"}
             </button>
           ) : (
             <button

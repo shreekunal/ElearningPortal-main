@@ -7,7 +7,6 @@ import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import StudentList from "./Components/StudentsList/StudentList.jsx";
 import AdminStudentsList from "./Components/AdminStudentsList/AdminStudentsList.jsx";
 import InstructorsList from "./Components/InstructorsList/InstructorsList.jsx";
-import AddAnnouncement from "./Components/AddAnnouncement/AddAnnouncement.jsx";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import NotFoundImg from "./assets/404.svg";
 import Placeholder from "./Components/Placeholder/Placeholder.jsx";
@@ -27,6 +26,7 @@ import Loader from "./Components/Loader/Loader.jsx";
 import StudentProgress from "./Components/StudentProgress/StudentProgress.jsx";
 import Front_ENV from "../Front_ENV.jsx";
 import AddMaterial from "./Components/AddMaterial/AddMaterial.jsx";
+import CreateUnit from "./Components/CreateUnit/CreateUnit.jsx";
 import AddInstructor from "./Components/AddInstructor/AddInstructor.jsx";
 import AddStudent from "./Components/AddStudent/AddStudent.jsx";
 import InstructorsPage from "./Components/AdminInstructorsPage/AdminInstructorsPage.jsx";
@@ -63,11 +63,11 @@ const pathsRoleBased = [
     roles: "student, instructor, admin,student",
   },
   {
-    path: /^\/AddAnnouncement\/[a-zA-Z0-9\-]+$/,
+    path: /^\/AddMaterial\/[a-zA-Z0-9\-]+$/,
     roles: "instructor, admin",
   },
   {
-    path: /^\/AddMaterial\/[a-zA-Z0-9\-]+$/,
+    path: /^\/CreateUnit\/[a-zA-Z0-9\-]+$/,
     roles: "instructor, admin",
   },
   {
@@ -399,10 +399,7 @@ function App() {
               />
               <Route path="/logout" element={<Logout />} />
               <Route path="/AddMaterial/:id" element={<AddMaterial />} />
-              <Route
-                path="/AddAnnouncement/:id"
-                element={<AddAnnouncement courses={courses} />}
-              />
+              <Route path="/CreateUnit/:id" element={<CreateUnit />} />
               <Route
                 path="/ViewProgress/:id/:name"
                 element={<StudentProgress />}

@@ -10,13 +10,11 @@ const CourseBlog = () => {
   const navigate = useNavigate();
   const { currentUser, showMessage } = useContext(CurrentUserContext);
   const [course, setCourse] = useState(null);
-  const [posts, setPosts] = useState([]);
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchCourseDetails();
-    fetchCoursePosts();
     fetchCourseMaterials();
   }, [id]);
 
@@ -39,24 +37,6 @@ const CourseBlog = () => {
     } catch (error) {
       showMessage("Error fetching course details", true);
       navigate("/MyCourses");
-    }
-  };
-
-  const fetchCoursePosts = async () => {
-    try {
-      const response = await fetch(`${Front_ENV.Back_Origin}/get-posts/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: getCookie("token") || "",
-        },
-      });
-      const data = await response.json();
-      if (data.data) {
-        setPosts(data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching posts:", error);
     }
   };
 
@@ -129,25 +109,6 @@ const CourseBlog = () => {
           )}
         </div>
 
-        <div className="content-section">
-          <h2>📢 Announcements</h2>
-          {posts.length > 0 ? (
-            <div className="posts-list">
-              {posts.map((post, index) => (
-                <div key={index} className="post-item">
-                  <h3>{post.title}</h3>
-                  <p>{post.content}</p>
-                  <div className="post-date">
-                    Posted on {new Date(post.createdAt).toLocaleDateString()}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="no-content">No announcements yet.</p>
-          )}
-        </div>
-
         {currentUser.role === "Instructor" && (
           <div className="instructor-actions">
             <h2>⚙️ Instructor Actions</h2>
@@ -157,12 +118,6 @@ const CourseBlog = () => {
                 onClick={() => navigate(`/AddMaterial/${id}`)}
               >
                 Add Material
-              </button>
-              <button
-                className="action-button"
-                onClick={() => navigate(`/AddAnnouncement/${id}`)}
-              >
-                Add Announcement
               </button>
               <button
                 className="action-button"

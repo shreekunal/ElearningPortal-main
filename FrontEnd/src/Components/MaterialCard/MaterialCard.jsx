@@ -2,11 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CurrentUserContext } from "../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBookOpen,
-  faFileAlt,
-  faBullhorn,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../Components/CourseMaterial/CourseMaterial.css";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -52,38 +48,6 @@ const MaterialCard = ({ material, courseId }) => {
     }
   };
 
-  const deleteAnnouncementHandler = async () => {
-    const isConfirmed = await confirmationToast(
-      "Are You Sure You Want to Delete This Announcement?"
-    );
-
-    if (isConfirmed) {
-      try {
-        const params = new URLSearchParams({
-          userID: currentUser.id,
-          postID: material.id,
-        });
-        const response = await fetch(
-          `${Front_ENV.Back_Origin}/deletePost?${params}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: getCookie("token") || "", // Assuming you use JWT authentication
-            },
-          }
-        ).then((res) => res.json());
-        if (!response.error) {
-          showMessage("Announcement deleted successfully!", false);
-        } else {
-          showMessage(response.error, true);
-        }
-      } catch (err) {
-        showMessage("An error occurred. Please try again later.", true);
-      }
-    }
-  };
-
   const deleteAssignmentHandler = async () => {
     const isConfirmed = await confirmationToast(
       "Are You Sure You Want to delete assignment?"
@@ -114,10 +78,6 @@ const MaterialCard = ({ material, courseId }) => {
 
   const editAssignmentHandler = () => {
     showMessage("Edit assignment coming soon", null);
-  };
-
-  const editAnnouncementHandler = () => {
-    showMessage("Edit announcement coming soon", null);
   };
 
   const editExamHandler = async () => {
@@ -198,66 +158,6 @@ const MaterialCard = ({ material, courseId }) => {
                 style={{ color: "red", cursor: "pointer" }}
                 onClick={deleteAssignmentHandler}
               />
-            </div>
-          )}
-        </div>
-      ) : material.materialType === "post" ? (
-        <div className="card material-card ">
-          <div className={`material-sub-card ${!seeMore ? "mb-0" : ""}`}>
-            <div className="material-icon">
-              <FontAwesomeIcon size="3x" icon={faBullhorn} color="#274546" />
-            </div>
-            <div>
-              <div className="material-title-due">
-                <h6>
-                  {material.instructorName} posted a new announcement :
-                  {material.announcement}
-                </h6>
-              </div>
-              <h6 className="material-date">{material.createdAt}</h6>
-            </div>
-            {currentUser.role === "Instructor" && (
-              <div className="course-icons-materialCard admin-icons">
-                <FontAwesomeIcon
-                  icon={faEdit}
-                  style={{ cursor: "pointer" }}
-                  className="edit-icon"
-                  onClick={() => editAnnouncementHandler(materials.id)}
-                />
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  style={{ color: "red", cursor: "pointer" }}
-                  onClick={() => deleteAnnouncementHandler(materials.id)}
-                />
-              </div>
-            )}
-            <h6
-              className="material-button blue-text bold-text"
-              onClick={handleSeeMore}
-              hidden={!seeMore}
-            >
-              See More
-            </h6>
-            <h6
-              className="material-button blue-text bold-text"
-              onClick={handleSeeMore}
-              hidden={seeMore}
-            >
-              See Less
-            </h6>
-          </div>
-          {!seeMore && (
-            <div
-              className="material-sub-card"
-              style={{
-                marginLeft: "93px",
-                maxWidth: "400px",
-                marginTop: "10px",
-              }}
-            >
-              <div className="material-see-more">
-                <h6>{material.description}</h6>
-              </div>
             </div>
           )}
         </div>

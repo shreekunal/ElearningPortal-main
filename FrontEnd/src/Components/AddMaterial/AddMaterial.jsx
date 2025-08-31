@@ -3,10 +3,15 @@ import { CurrentUserContext } from "../../App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Placeholder from "../Placeholder/Placeholder";
 import { useNavigate, useParams } from "react-router";
-import ExamImg from "../../assets/Grades.svg";
-import AssignmentImg from "../../assets/Student.svg";
-import AnnouncementImg from "../../assets/Announcement.svg";
 import NotFoundImg from "../../assets/404.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLayerGroup,
+  faPlus,
+  faBook,
+  faQuestionCircle,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import "./AddMaterial.css";
 
 const AddMaterial = () => {
@@ -14,42 +19,58 @@ const AddMaterial = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(CurrentUserContext);
 
-  const AddAssignment = () => {
-    navigate(`/AddAssignment/${id}`);
-  };
-  const AddExam = () => {
-    navigate(`/AddExam/${id}`, { state: { activeStep: 0 } });
-  };
-  const AddAnnouncement = () => {
-    navigate(`/AddAnnouncement/${id}`);
+  const CreateUnit = () => {
+    navigate(`/CreateUnit/${id}`);
   };
 
   return (
     <>
       {currentUser.role === "Instructor" ? (
-        <div className="add-material-component">
-          <div className="card add-material-card" onClick={AddAssignment}>
-            <div className="add-material-header card-header green-bg light-text">
-              <h4>Add Assignment</h4>
-            </div>
-            <div className="card-body add-material-body ">
-              <img src={AssignmentImg} alt="Assignment" />
-            </div>
+        <div className="add-material-container">
+          <div className="add-material-header">
+            <h2 className="page-title">
+              <FontAwesomeIcon icon={faPlus} className="title-icon" />
+              Design Course Units
+            </h2>
+            <p className="page-subtitle">
+              Create structured learning units with multiple chapters and
+              assessments.
+            </p>
           </div>
-          <div className="card add-material-card" onClick={AddExam}>
-            <div className="add-material-header card-header green-bg light-text">
-              <h4>Add Exam</h4>
-            </div>
-            <div className="card-body add-material-body">
-              <img src={ExamImg} alt="Exam" />
-            </div>
-          </div>
-          <div className="card add-material-card" onClick={AddAnnouncement}>
-            <div className="add-material-header card-header green-bg light-text">
-              <h4>Add Announcement</h4>
-            </div>
-            <div className="card-body add-material-body">
-              <img src={AnnouncementImg} alt="Announcement" />
+
+          <div className="unit-creation-section">
+            <div className="unit-card" onClick={CreateUnit}>
+              <div className="unit-header">
+                <div className="unit-icon-wrapper">
+                  <FontAwesomeIcon icon={faLayerGroup} className="unit-icon" />
+                </div>
+                <div className="unit-title-section">
+                  <h3 className="unit-title">Create New Unit</h3>
+                  <p className="unit-description">
+                    Design a complete learning unit with chapters and quiz
+                  </p>
+                </div>
+              </div>
+
+              <div className="unit-structure">
+                <div className="structure-item">
+                  <FontAwesomeIcon icon={faBook} className="structure-icon" />
+                  <span>Multiple Chapters</span>
+                </div>
+                <div className="structure-divider">+</div>
+                <div className="structure-item">
+                  <FontAwesomeIcon
+                    icon={faQuestionCircle}
+                    className="structure-icon"
+                  />
+                  <span>Unit Quiz</span>
+                </div>
+              </div>
+
+              <div className="unit-action">
+                <span className="action-text">Start Building Unit</span>
+                <FontAwesomeIcon icon={faArrowRight} className="action-arrow" />
+              </div>
             </div>
           </div>
         </div>

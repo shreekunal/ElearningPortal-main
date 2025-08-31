@@ -58,7 +58,6 @@ const Header = ({ setFilter, showSearch = false }) => {
     "/CourseBlog",
     "/CourseDetails",
     "/AddMaterial",
-    "/AddAnnouncement",
     "/ViewProgress",
     "/AssignmentPage",
     "/ExamPage",
