@@ -276,6 +276,46 @@ const Reply = mongoose.model(
   })
 );
 
+const Unit = mongoose.model(
+  "Unit",
+  new mongoose.Schema({
+    id: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
+    courseID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
+    },
+    chapters: [{
+      id: { type: Number, required: true },
+      title: { type: String, required: true },
+      sections: [{
+        id: { type: Number, required: true },
+        heading: { type: String, required: true },
+        content: { type: String, default: "" },
+        subSections: [{
+          id: { type: Number, required: true },
+          subHeading: { type: String, default: "" },
+          subContent: { type: String, default: "" },
+        }]
+      }],
+      videoUrl: { type: String, default: "" },
+      materials: { type: String, default: "" },
+    }],
+    quiz: {
+      title: { type: String, required: true },
+      questions: [{
+        id: { type: Number, required: true },
+        question: { type: String, required: true },
+        type: { type: String, default: "multiple-choice" },
+        options: [{ type: String, required: true }],
+        correctAnswer: { type: Number, required: true },
+      }]
+    },
+    isActive: { type: Boolean, default: true },
+  }, { timestamps: true })
+);
+
 //--------------------------------------------
 
 module.exports = {
@@ -292,4 +332,5 @@ module.exports = {
   Post,
   Comment,
   Reply,
+  Unit,
 };

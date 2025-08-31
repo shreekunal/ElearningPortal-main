@@ -58,6 +58,7 @@ const CourseDetails = () => {
     setMaterials,
   } = useContext(CurrentUserContext);
   const [loader, setLoader] = useState(true);
+  const [units, setUnits] = useState([]);
   const route = useLocation();
   const course = courses.find((course) => course.id === id);
 
@@ -84,9 +85,42 @@ const CourseDetails = () => {
     }
   };
 
+  const fetchUnits = async () => {
+    // Fetch units for the course
+    try {
+      const response = await fetch(
+        `${Front_ENV.Back_Origin}/getCourseUnits/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: getCookie("token") || "",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.data) {
+        setUnits(data.data);
+      } else {
+        setUnits([]);
+        if (data.error && data.error !== "No units found for this course") {
+          showMessage(data.error, true);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching units:", error);
+      setUnits([]);
+    }
+  };
+
   const fetchData = async () => {
     await fetchCourses();
-    isAuthenticated && (await fetchMaterials());
+    if (isAuthenticated) {
+      await fetchMaterials();
+      await fetchUnits();
+    }
   };
 
   useEffect(() => {
@@ -365,23 +399,105 @@ const CourseDetails = () => {
         </DetailsHeaderDiv>
         {currentUser.role &&
           (course.isEnrolled || currentUser.role.toLowerCase() === "admin") && (
-            <div
-              className="course-material card-body"
-              style={
-                loader ? { minHeight: "400px", background: "#d8d8d8" } : {}
-              }
-            >
-              <h5>Added Material:</h5>
-              {loader ? (
-                <Loader />
-              ) : materials.length ? (
-                <div className="material-list">
-                  <CourseMaterial courseId={course.id} />
-                </div>
-              ) : (
-                <Placeholder text="You're all caught up" img={CaughtUp} />
-              )}
-            </div>
+            <>
+              {/* Learning Units Section */}
+              <div
+                className="course-units card-body"
+                style={
+                  loader ? { minHeight: "300px", background: "#d8d8d8" } : {}
+                }
+              >
+                <h5>Learning Units:</h5>
+                {loader ? (
+                  <Loader />
+                ) : units.length ? (
+                  <div className="units-list">
+                    {units.map((unit) => (
+                      <div
+                        key={unit.id}
+                        className="unit-card"
+                        onClick={() =>
+                          navigate(`/Unit/${unit.id}`, {
+                            state: { courseID: course.id },
+                          })
+                        }
+                        style={{
+                          border: "1px solid #ddd",
+                          borderRadius: "8px",
+                          padding: "16px",
+                          margin: "8px 0",
+                          cursor: "pointer",
+                          transition: "all 0.3s ease",
+                          backgroundColor: "#f9f9f9",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = "#e3f2fd";
+                          e.target.style.transform = "translateY(-2px)";
+                          e.target.style.boxShadow =
+                            "0 4px 8px rgba(0,0,0,0.1)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "#f9f9f9";
+                          e.target.style.transform = "translateY(0)";
+                          e.target.style.boxShadow = "none";
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div>
+                            <h6
+                              style={{
+                                margin: "0 0 8px 0",
+                                color: "#333",
+                                fontWeight: "600",
+                              }}
+                            >
+                              {unit.title}
+                            </h6>
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: "16px",
+                                fontSize: "0.9em",
+                                color: "#666",
+                              }}
+                            >
+                              <span>📚 {unit.chaptersCount} chapters</span>
+                              <span>
+                                ❓ {unit.questionsCount} quiz questions
+                              </span>
+                            </div>
+                            <div
+                              style={{
+                                fontSize: "0.8em",
+                                color: "#888",
+                                marginTop: "4px",
+                              }}
+                            >
+                              Created:{" "}
+                              {new Date(unit.createdAt).toLocaleDateString()}
+                            </div>
+                          </div>
+                          <div style={{ fontSize: "1.2em", color: "#1976d2" }}>
+                            →
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <Placeholder
+                    text="No learning units available yet"
+                    img={CaughtUp}
+                  />
+                )}
+              </div>
+            </>
           )}
       </div>
     </>

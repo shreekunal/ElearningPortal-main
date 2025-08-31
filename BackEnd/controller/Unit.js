@@ -65,8 +65,19 @@ class UnitController {
                 quiz
             });
 
+            // Get all enrolled students for this course to make materials available
+            const enrolledStudents = await Student_Course.find({ courseID: course._id })
+                .populate('studentID', 'id name email');
+
             const populatedUnit = await Unit.findById(unit._id)
                 .populate('courseID', 'id title');
+
+            // Log the unit creation for enrolled students (could be extended with notifications)
+            console.log(`Unit "${title}" created for course "${course.title}"`);
+            console.log(`Available to ${enrolledStudents.length} enrolled students:`);
+            enrolledStudents.forEach(enrollment => {
+                console.log(`- Student: ${enrollment.studentID.name} (${enrollment.studentID.email})`);
+            });
 
             res.status(201).json({
                 data: {
@@ -76,9 +87,10 @@ class UnitController {
                     courseName: populatedUnit.courseID.title,
                     chapters: populatedUnit.chapters,
                     quiz: populatedUnit.quiz,
-                    createdAt: populatedUnit.createdAt
+                    createdAt: populatedUnit.createdAt,
+                    availableToStudents: enrolledStudents.length
                 },
-                message: `Unit "${title}" created successfully`
+                message: `Unit "${title}" created successfully and made available to ${enrolledStudents.length} enrolled students`
             });
 
         } catch (error) {

@@ -4,7 +4,7 @@ const verifyToken = require('../controller/VerifyToken');
 const router = Router();
 
 // Create a new unit (instructors and admins only)
-router.post('/createUnit/:courseId', verifyToken(['Instructor', 'Admin']), Controller.createUnit);
+router.post('/createUnit/:courseId', verifyToken('Instructor'), Controller.createUnit);
 
 // Get all units for a specific course
 router.get('/getCourseUnits/:courseId', verifyToken(), Controller.getCourseUnits);
@@ -13,10 +13,10 @@ router.get('/getCourseUnits/:courseId', verifyToken(), Controller.getCourseUnits
 router.get('/getUnit/:unitId', verifyToken(), Controller.getUnit);
 
 // Update a unit (instructors and admins only)
-router.put('/updateUnit/:unitId', verifyToken(['Instructor', 'Admin']), Controller.updateUnit);
+router.put('/updateUnit/:unitId', verifyToken('Instructor'), Controller.updateUnit);
 
 // Delete a unit (instructors and admins only)
-router.delete('/deleteUnit/:unitId', verifyToken(['Instructor', 'Admin']), Controller.deleteUnit);
+router.delete('/deleteUnit/:unitId', verifyToken('Instructor'), Controller.deleteUnit);
 
 // Get all units for courses the user is enrolled in
 router.post('/getUserUnits', verifyToken(), Controller.getUnitsForUser);

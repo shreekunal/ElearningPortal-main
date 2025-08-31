@@ -13,6 +13,8 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import "./CreateUnit.css";
+import Front_ENV from "../../../Front_ENV.jsx";
+import { getCookie } from "../Cookie/Cookie.jsx";
 
 const CreateUnit = () => {
   const { id: courseId } = useParams();
@@ -377,12 +379,44 @@ const CreateUnit = () => {
     }
 
     try {
-      // Here you would typically save to backend
-      console.log("Saving unit:", unit);
-      showMessage("Unit created successfully!", false);
+      const token = getCookie("token");
+      if (!token) {
+        showMessage("Please log in to create a unit", true);
+        return;
+      }
+
+      const response = await fetch(
+        `${Front_ENV.Back_Origin}/createUnit/${courseId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            title: unit.title,
+            chapters: unit.chapters,
+            quiz: unit.quiz,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.error) {
+        showMessage(data.error, true);
+        return;
+      }
+
+      showMessage(
+        data.message ||
+          "Unit created successfully and made available to all enrolled students!",
+        false
+      );
       navigate(`/CourseDetails/${courseId}`);
     } catch (error) {
-      showMessage("Error creating unit", true);
+      console.error("Error creating unit:", error);
+      showMessage("Error creating unit. Please try again.", true);
     }
   };
 
