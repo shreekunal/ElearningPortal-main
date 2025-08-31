@@ -7,6 +7,9 @@ import {
   faChalkboardTeacher,
   faFileAlt,
   faClock,
+  faBook,
+  faQuestionCircle,
+  faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CourseDetails.css";
@@ -283,8 +286,8 @@ const CourseDetails = () => {
 
                 <div className="stats-card">
                   <FontAwesomeIcon icon={faFileAlt} />
-                  <span className="stats-number">{course.materialCount}</span>
-                  <span className="stats-label">Materials</span>
+                  <span className="stats-number">{units.length}</span>
+                  <span className="stats-label">Units</span>
                 </div>
               </div>
             </div>
@@ -403,98 +406,286 @@ const CourseDetails = () => {
               {/* Learning Units Section */}
               <div
                 className="course-units card-body"
-                style={
-                  loader ? { minHeight: "300px", background: "#d8d8d8" } : {}
-                }
+                style={{
+                  background:
+                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  borderRadius: "0 0 16px 16px",
+                  padding: "32px",
+                  marginTop: "5px",
+                  color: "white",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+                }}
               >
-                <h5>Learning Units:</h5>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "24px",
+                    gap: "12px",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "rgba(255,255,255,0.2)",
+                      borderRadius: "12px",
+                      padding: "12px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faBook}
+                      style={{ fontSize: "24px" }}
+                    />
+                  </div>
+                  <div>
+                    <h3
+                      style={{
+                        margin: 0,
+                        fontSize: "28px",
+                        fontWeight: "700",
+                        textShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                      }}
+                    >
+                      Learning Units
+                    </h3>
+                    <p
+                      style={{
+                        margin: 0,
+                        opacity: 0.9,
+                        fontSize: "16px",
+                      }}
+                    >
+                      {units.length} {units.length === 1 ? "unit" : "units"}{" "}
+                      available
+                    </p>
+                  </div>
+                </div>
+
                 {loader ? (
-                  <Loader />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      padding: "40px 0",
+                    }}
+                  >
+                    <Loader />
+                  </div>
                 ) : units.length ? (
-                  <div className="units-list">
-                    {units.map((unit) => (
+                  <div
+                    className="units-grid"
+                    style={{
+                      display: "grid",
+                      gap: "20px",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(350px, 1fr))",
+                    }}
+                  >
+                    {units.map((unit, index) => (
                       <div
                         key={unit.id}
-                        className="unit-card"
+                        className="unit-card-modern"
                         onClick={() =>
                           navigate(`/Unit/${unit.id}`, {
                             state: { courseID: course.id },
                           })
                         }
                         style={{
-                          border: "1px solid #ddd",
-                          borderRadius: "8px",
-                          padding: "16px",
-                          margin: "8px 0",
+                          background: "rgba(255,255,255,0.95)",
+                          borderRadius: "16px",
+                          padding: "24px",
                           cursor: "pointer",
-                          transition: "all 0.3s ease",
-                          backgroundColor: "#f9f9f9",
+                          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                          border: "1px solid rgba(255,255,255,0.2)",
+                          backdropFilter: "blur(10px)",
+                          position: "relative",
+                          overflow: "hidden",
                         }}
                         onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = "#e3f2fd";
-                          e.target.style.transform = "translateY(-2px)";
-                          e.target.style.boxShadow =
-                            "0 4px 8px rgba(0,0,0,0.1)";
+                          e.currentTarget.style.transform =
+                            "translateY(-8px) scale(1.02)";
+                          e.currentTarget.style.boxShadow =
+                            "0 20px 40px rgba(0,0,0,0.15)";
+                          e.currentTarget.style.background =
+                            "rgba(255,255,255,1)";
                         }}
                         onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = "#f9f9f9";
-                          e.target.style.transform = "translateY(0)";
-                          e.target.style.boxShadow = "none";
+                          e.currentTarget.style.transform =
+                            "translateY(0) scale(1)";
+                          e.currentTarget.style.boxShadow =
+                            "0 8px 25px rgba(0,0,0,0.1)";
+                          e.currentTarget.style.background =
+                            "rgba(255,255,255,0.95)";
                         }}
                       >
+                        {/* Unit Number Badge */}
                         <div
                           style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
+                            position: "absolute",
+                            top: "16px",
+                            right: "16px",
+                            background:
+                              "linear-gradient(45deg, #FF6B6B, #4ECDC4)",
+                            color: "white",
+                            borderRadius: "20px",
+                            padding: "6px 12px",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                           }}
                         >
-                          <div>
-                            <h6
-                              style={{
-                                margin: "0 0 8px 0",
-                                color: "#333",
-                                fontWeight: "600",
-                              }}
-                            >
-                              {unit.title}
-                            </h6>
+                          Unit {index + 1}
+                        </div>
+
+                        {/* Main Content */}
+                        <div style={{ paddingRight: "60px" }}>
+                          <h4
+                            style={{
+                              margin: "0 0 16px 0",
+                              color: "#2D3748",
+                              fontWeight: "700",
+                              fontSize: "20px",
+                              lineHeight: "1.3",
+                            }}
+                          >
+                            {unit.title}
+                          </h4>
+
+                          {/* Stats Row */}
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "20px",
+                              marginBottom: "16px",
+                              flexWrap: "wrap",
+                            }}
+                          >
                             <div
                               style={{
                                 display: "flex",
-                                gap: "16px",
-                                fontSize: "0.9em",
-                                color: "#666",
+                                alignItems: "center",
+                                gap: "8px",
+                                background:
+                                  "linear-gradient(45deg, #667eea, #764ba2)",
+                                color: "white",
+                                padding: "8px 12px",
+                                borderRadius: "20px",
+                                fontSize: "14px",
+                                fontWeight: "500",
+                                boxShadow:
+                                  "0 4px 12px rgba(102, 126, 234, 0.3)",
                               }}
                             >
-                              <span>📚 {unit.chaptersCount} chapters</span>
-                              <span>
-                                ❓ {unit.questionsCount} quiz questions
-                              </span>
+                              <FontAwesomeIcon icon={faBook} />
+                              <span>{unit.chaptersCount} chapters</span>
                             </div>
+
                             <div
                               style={{
-                                fontSize: "0.8em",
-                                color: "#888",
-                                marginTop: "4px",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "8px",
+                                background:
+                                  "linear-gradient(45deg, #FF6B6B, #FF8E53)",
+                                color: "white",
+                                padding: "8px 12px",
+                                borderRadius: "20px",
+                                fontSize: "14px",
+                                fontWeight: "500",
+                                boxShadow:
+                                  "0 4px 12px rgba(255, 107, 107, 0.3)",
                               }}
                             >
-                              Created:{" "}
-                              {new Date(unit.createdAt).toLocaleDateString()}
+                              <FontAwesomeIcon icon={faQuestionCircle} />
+                              <span>{unit.questionsCount} quiz questions</span>
                             </div>
                           </div>
-                          <div style={{ fontSize: "1.2em", color: "#1976d2" }}>
-                            →
+
+                          {/* Created Date */}
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "8px",
+                              color: "#718096",
+                              fontSize: "13px",
+                              marginBottom: "16px",
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faCalendarAlt} />
+                            <span>
+                              Created:{" "}
+                              {new Date(unit.createdAt).toLocaleDateString(
+                                "en-US",
+                                {
+                                  year: "numeric",
+                                  month: "short",
+                                  day: "numeric",
+                                }
+                              )}
+                            </span>
                           </div>
                         </div>
+
+                        {/* Decorative Background Pattern */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "-50px",
+                            right: "-50px",
+                            width: "100px",
+                            height: "100px",
+                            background:
+                              "linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))",
+                            borderRadius: "50%",
+                            zIndex: 0,
+                          }}
+                        ></div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <Placeholder
-                    text="No learning units available yet"
-                    img={CaughtUp}
-                  />
+                  <div
+                    style={{
+                      textAlign: "center",
+                      padding: "60px 20px",
+                      background: "rgba(255,255,255,0.1)",
+                      borderRadius: "16px",
+                      border: "2px dashed rgba(255,255,255,0.3)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "48px",
+                        marginBottom: "16px",
+                        color: "white",
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faBook} />
+                    </div>
+                    <h4
+                      style={{
+                        color: "white",
+                        margin: "0 0 8px 0",
+                        fontSize: "20px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      No Learning Units Yet
+                    </h4>
+                    <p
+                      style={{
+                        color: "rgba(255,255,255,0.8)",
+                        margin: 0,
+                        fontSize: "16px",
+                      }}
+                    >
+                      Learning units will appear here once they are created by
+                      instructors
+                    </p>
+                  </div>
                 )}
               </div>
             </>
